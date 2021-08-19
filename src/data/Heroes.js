@@ -159,7 +159,7 @@ export const heroes = [
         'first_appearance': 'The Fantastic Four #48',
         'characters': 'Norrin Radd'
     },
-    {'id': 'marvel-Pipe',
+    {'id': 'marvel-pipe',
     'superhero': 'Spider Pipe',
     'publisher': 'Marvel Comics',
     'alter_ego': 'Juan Felipe',

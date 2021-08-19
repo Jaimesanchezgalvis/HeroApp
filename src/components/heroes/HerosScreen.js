@@ -1,9 +1,10 @@
 import React, { useMemo } from 'react'
-import { Redirect, useParams  } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
+import { heroImages } from '../../helpers/heroImages';
 import { getHeroById } from '../../selectors/getHeroByid';
 
-export const HerosScreen = ({history}) => {
-    
+export const HerosScreen = ({ history }) => {
+
     const { heroeId } = useParams();
 
     const hero = useMemo(() => getHeroById(heroeId), [heroeId]);
@@ -11,11 +12,11 @@ export const HerosScreen = ({history}) => {
     if (!hero) {
         return <Redirect to="/" />
     }
-    
-    const handleReturn = ()=>{
-        if (history.length <=2 ) {
+
+    const handleReturn = () => {
+        if (history.length <= 2) {
             history.push('/')
-        } else{
+        } else {
             history.goBack()
         }
     }
@@ -31,9 +32,11 @@ export const HerosScreen = ({history}) => {
     return (
         <div className="row mt-5">
             <div className="col-4">
-                <img src={`../assets/heroes/${heroeId}.jpg`}
+                <img
+                    // src={batman}
+                    src={heroImages(`./${heroeId}.jpg`).default}
                     alt={superhero}
-                    className="img-thumbnail animate__animated animate__fadeInLeft"/>
+                    className="img-thumbnail animate__animated animate__fadeInLeft" />
             </div>
             <div className="col-8">
                 <h3>{superhero}</h3>
@@ -43,10 +46,10 @@ export const HerosScreen = ({history}) => {
                     <li className="list-group-item"><b>First appearance: </b>{first_appearance}</li>
                 </ul>
                 <h5>Characters</h5>
-                <p>{ characters }</p>
-                <button 
-                className="btn btn-outline-info"
-                onClick={ handleReturn }
+                <p>{characters}</p>
+                <button
+                    className="btn btn-outline-info"
+                    onClick={handleReturn}
                 >Return</button>
             </div>
         </div>
